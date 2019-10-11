@@ -103,5 +103,12 @@ public class Planet{
 		this.yyPos += yyVel*dt;
 	}
 
+	/* Draws itself in its current position.
+	**/
+	public void draw(){
+		StdDraw.picture(xxPos, yyPos, NBody.imgDir+imgFileName);
+		//StdDraw.show();
+	}
+
 
 }
