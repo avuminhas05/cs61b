@@ -1,6 +1,7 @@
 public class Planet{
 
-	public static final double gravConstant = 6.67e-11;
+	private static final double gravConstant = 6.67e-11;
+	private static final String imgDir = "images/";
 
 	public double xxPos, yyPos, xxVel, yyVel, mass;
 	public String imgFileName;
@@ -106,7 +107,7 @@ public class Planet{
 	/* Draws itself in its current position.
 	**/
 	public void draw(){
-		StdDraw.picture(xxPos, yyPos, NBody.imgDir+imgFileName);
+		StdDraw.picture(xxPos, yyPos, imgDir+imgFileName);
 		//StdDraw.show();
 	}
 

@@ -1,6 +1,6 @@
 public class NBody{
 
-	public static final String imgDir = "images/";
+	private static final String imgDir = "images/";
 
 	/* Read the radius of the universe from given file and returns it.
 	**/
