@@ -4,6 +4,21 @@ import org.junit.Test;
 
 public class IntListTest {
 
+    @Test
+    public void testReverse(){
+        assertNull(IntList.reverse(null)); // is it returning null on empty list?
+        IntList myList = IntList.of(1, 3, 5, 7);
+        IntList expectedList = IntList.of(7, 5, 3, 1);
+        IntList myListR = IntList.reverse(myList);
+        assertEquals(expectedList, myListR); // is reverse method reversing list?
+        assertNotEquals(IntList.of(1, 3, 5, 7), myList); // is reverse method is destructive?
+
+        IntList myList2 = IntList.of(1);
+        assertEquals(IntList.of(1), myList2);
+
+
+    }
+
     /**
      * Example test that verifies correctness of the IntList.of static
      * method. The main point of this is to convince you that
