@@ -1,69 +1,51 @@
-/**
- * Exercise to showcase the step over button.
- * Code adapted from https://stackoverflow.com/questions/4895173/bitwise-multiply-and-add-in-java and https://stackoverflow.com/questions/1533131/what-useful-bitwise-operator-code-tricks-should-a-developer-know-about
- */
-public class DebugExercise2 {
-    /** Returns the max of a and b. Do not step into this function. 
-      * This function may have a bug, but if it does, you should find it
-      * by stepping over, not into. */
-    public static int max(int a, int b) {
-        if(a>=b) return a;
-        return b;
-    }
+/* 
+ * Enter your code here. Read input from STDIN. Prlong your output to STDOUT. 
+ * Your class should be named CandidateCode.
+*/
 
+import java.io.*;
+import java.util.*;
+public class CandidateCode {
 
-    /** Returns the sum of a and b. Do not step into this function. 
-      * This function may have a bug, but if it does, you should find it
-      * by stepping over, not into. */    
-    public static int add(int a, int b) {
-        return a+b;
-    }
-
-    /** Returns a new array where entry i is the max of
-     * a[i] and b[i]. For example, if a = {1, -10, 3}
-     * and b = {0, 20, 5}, this function will return {1, 20, 5}.
-     * */
-    public static int[] arrayMax(int[] a, int[] b) {
-        if (a.length != b.length) {
-            System.out.println("ERROR! Arrays don't match");
-            return null;
+    public static void divideArray(long[] result, long[] arr1, long[] arr2){
+        for(long i = 0; i<result.length; i++){
+            if(arr2[i] == 0)
+                result[i] = longeger.MAX_VALUE;
+            else
+                result[i] = arr1[i] / arr2[i];
         }
-        int[] returnArray = new int[a.length];
-        for (int i = 0; i < a.length; i += 1) {
-            int biggerValue = max(a[i], b[i]);
-            returnArray[i] = biggerValue;
+    }
+
+    public static long min(long[] arr){
+        long min = arr[0];
+        for(long i = 0; i< arr.length; i++){
+            if(arr[i] < min)
+                min = arr[i];
+        }
+        return min;
+    }
+    public static void main(String args[] ) throws Exception {
+
+        Scanner sc = new Scanner(System.in);
+        long N;
+        long[] avalIngred;
+        long[] needIngred;
+        long[] numIngred;
+
+        N = sc.nextLong();
+        avalIngred = new Long[N];
+        needIngred = new Long[N];
+        numIngred = new Long[N];
+
+        for(long i = 0; i<N; i++){
+            needIngred[i] = sc.nextLong();
+        }
+        for(long i = 0; i<N; i++){
+            avalIngred[i] = sc.nextLong();
         }
 
-        return returnArray;
-    }
+        divideArray(numIngred, avalIngred, needIngred);
+        System.out.prlongln(min(numIngred));
 
-    /** Returns the sum of all elements in x. */
-    public static int arraySum(int[] x) {
-        int i = 0;
-        int sum = 0;
-        while (i < x.length) {
-            sum = add(sum, x[i]);
-            i = i + 1;
-        }
-        return sum;
-    }
-
-    /** Returns the sum of the element-wise max of a and b.
-     *  For example if a = {2, 0, 10, 14} and b = {-5, 5, 20, 30},
-     *  the result should be 57.
-     * */
-    public static int sumOfElementwiseMaxes(int[] a, int[] b) {
-        int[] maxes = arrayMax(a, b);
-        int sumofMaxes = arraySum(maxes);
-        return sumofMaxes;
-    }
-
-
-    public static void main(String[] args) {
-        int[] a = {1, 11, -1, -11};
-        int[] b = {3, -3, 2, -1};
-
-        int sumOfElementwiseMaxes = sumOfElementwiseMaxes(a, b);
-        System.out.println(sumOfElementwiseMaxes);
-    }
+   }
 }

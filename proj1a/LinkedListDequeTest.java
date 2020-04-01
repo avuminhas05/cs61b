@@ -96,10 +96,24 @@ public class LinkedListDequeTest {
 		l1.printDeque();
 	}
 
+	public static void addGetTest(){
+		System.out.println("Running addGetTest()...");
+		LinkedListDeque<Integer> myList = new LinkedListDeque<>();
+		myList.addLast(0);
+		myList.addLast(1);
+		myList.addLast(2);
+		myList.addLast(3);
+		System.out.println("Output: "+ myList.getRecursive(0));
+		System.out.println("Expected: 0");
+		System.out.println("Output: "+ myList.getRecursive(3));
+		System.out.println("Expected: 3");
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
 		addMyTest();
+		addGetTest();
 	}
 } 

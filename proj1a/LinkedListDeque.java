@@ -80,11 +80,24 @@ public class LinkedListDeque<T> {
      * If no such item exists, returns null.
      */
     public T get(int index){
-        return null;
+        int i = 0;
+        Node temp = headNode.next;
+        while(i < index && temp != null){
+            temp = temp.next;
+            i++;
+        }
+        if(temp == null) return null;
+        return temp.item;
     }
 
     /* Same as get() method but different implementation */
     public T getRecursive(int index){
-        return null;
+        return getRecursiveHelper(index, headNode.next);
+    }
+    /* Helper method for getRecursive() method */
+    public T getRecursiveHelper(int index, Node head){
+        if(head == null) return null;
+        if(index == 0) return head.item;
+        return getRecursiveHelper(index - 1, head.next);
     }
 }
