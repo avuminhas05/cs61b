@@ -3,7 +3,7 @@ public class LinkedListDeque<T> {
     private int size;
     private Node headNode;
 
-    public class Node{
+    private class Node{
         public T item;
         public Node next;
         public Node prev;
@@ -53,12 +53,14 @@ public class LinkedListDeque<T> {
             System.out.print(temp.item + " ");
             temp = temp.next;
         }
+        System.out.println("\n");
     }
 
     /* Remove the first element and return it.
     * If no such item exist, returns null. */
     public T removeFirst(){
         if(isEmpty()) return null;
+        size--;
         Node temp = headNode.next;
         temp.prev.next = temp.next;
         temp.next.prev = temp.prev;
@@ -70,6 +72,7 @@ public class LinkedListDeque<T> {
      */
     public T removeLast(){
         if(isEmpty()) return null;
+        size--;
         Node temp = headNode.prev;
         temp.next.prev = temp.prev;
         temp.prev.next = temp.next;
@@ -95,7 +98,7 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(index, headNode.next);
     }
     /* Helper method for getRecursive() method */
-    public T getRecursiveHelper(int index, Node head){
+    private T getRecursiveHelper(int index, Node head){
         if(head == null) return null;
         if(index == 0) return head.item;
         return getRecursiveHelper(index - 1, head.next);

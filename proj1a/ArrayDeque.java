@@ -1,5 +1,5 @@
 
-public class ArrayDeque<T>{
+public class ArrayDeque< T >{
 
     private T[] arr;
     private int size;
@@ -113,7 +113,7 @@ public class ArrayDeque<T>{
     }
 
     /* Returns the length of the array used to implement deque */
-    public int getLength(){
+    private int getLength(){
         return arr.length;
     }
 
