@@ -43,9 +43,21 @@ public class ArrayDequeTest {
 
     }
 
+    public static void testGet(){
+        System.out.println("Running testGet...");
+        ArrayDeque<Integer> dq  = new ArrayDeque<>();
+        dq.addLast(0);
+        dq.addLast(1);
+        dq.addFirst(-1);
+        dq.addFirst(-2);
+        System.out.println("Expected: -2\n" + dq.get(0));
+        System.out.println("Expected: 0\n" + dq.get(2));
+    }
+
     public static void main(String[] args) {
         testAdd();
         testRemove();
         testUpdateSize();
+        testGet();
     }
 }
