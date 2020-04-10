@@ -26,11 +26,11 @@ public class TestPalindrome {
 
     @Test
     public void testIsPalindromeComp(){
-        CharacterComparator cc = new OffByOne();
+        CharacterComparator cc = new OffByN(1);
         assertTrue(palindrome.isPalindrome("flake", cc));
-        assertFalse(palindrome.isPalindrome("aba"));
+        assertFalse(palindrome.isPalindrome("aba", cc));
         assertTrue(palindrome.isPalindrome("flke", cc));
-        assertFalse(palindrome.isPalindrome("a", cc));
+        assertTrue(palindrome.isPalindrome("a", cc));
         assertFalse(palindrome.isPalindrome("naveen", cc));
     }
 }
