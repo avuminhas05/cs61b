@@ -9,5 +9,6 @@ public class TestOffByN {
         assertTrue(cmp.equalChars('a', 'f'));
         assertTrue(cmp.equalChars('f', 'a'));
         assertFalse(cmp.equalChars('f', 'h'));
+        assertFalse(cmp.equalChars('a', 'F'));
     }
 }
