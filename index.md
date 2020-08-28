@@ -1,4 +1,9 @@
-## Welcome to GitHub Pages
+#Naveen Minhas
+##Contact Info:-
+Email: avuminhas05@gmail.com
+Phone: 7018775578
+##Adress:-
+VPO. Uttrala, Distt. Kangra, State Himachal Pradesh, India
 
 You can use the [editor on GitHub](https://github.com/avuminhas05/cs61b/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
