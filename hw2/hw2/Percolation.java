@@ -42,9 +42,9 @@ public class Percolation {
             if(col != (gridSize-1) && isOpen(row, col+1))
                 uf.union(siteNum(row, col), siteNum(row, col+1));
             if(row == 0)
-                uf.union(siteNum(row, col), 0);
+                uf.union(siteNum(row, col), ufSize - 2);
             if(row == (gridSize-1))
-                uf.union(siteNum(row, col), ufSize-1);
+                uf.union(siteNum(row, col), ufSize - 1);
 
         }
     }
@@ -56,7 +56,7 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col){
         validateRowCol(row, col);
-        return uf.connected(siteNum(row, col), 0);
+        return uf.connected(siteNum(row, col), ufSize - 2);
     }
     // number of open sites
     public int numberOfOpenSites(){
@@ -64,7 +64,7 @@ public class Percolation {
     }
     // does the system percolate?
     public boolean percolates(){
-        return uf.connected(0, ufSize-1);
+        return uf.connected(ufSize - 2, ufSize - 1);
     }
 
     private int siteNum(int row, int col){
