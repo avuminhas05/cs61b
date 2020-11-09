@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 public class Percolation {
     private final boolean[][] grid;
     private final WeightedQuickUnionUF uf;
+    private final WeightedQuickUnionUF tempUF;
     private final int gridSize;
     private final int ufSize;
     private int numOpenSites;
@@ -19,6 +20,7 @@ public class Percolation {
         ufSize = (gridSize * gridSize) + 2;
         grid = new boolean[gridSize][gridSize];
         uf = new WeightedQuickUnionUF(ufSize);
+        tempUF = new WeightedQuickUnionUF(ufSize);
         numOpenSites = 0;
 
         for(int row = 0; row < gridSize; row++){
@@ -33,17 +35,27 @@ public class Percolation {
         if(grid[row][col]){
             grid[row][col] = false;
             numOpenSites++;
-            if(row != 0 && isOpen(row - 1, col))
-                uf.union(siteNum(row, col), siteNum(row-1, col));
-            if(row != (gridSize-1) && isOpen(row+1, col))
-                uf.union(siteNum(row, col), siteNum(row+1, col));
-            if(col != 0 && isOpen(row, col-1))
-                uf.union(siteNum(row, col), siteNum(row, col-1));
-            if(col != (gridSize-1) && isOpen(row, col+1))
-                uf.union(siteNum(row, col), siteNum(row, col+1));
-            if(row == 0)
+            if(row != 0 && isOpen(row - 1, col)) {
+                uf.union(siteNum(row, col), siteNum(row - 1, col));
+                tempUF.union(siteNum(row, col), siteNum(row - 1, col));
+            }
+            if(row != (gridSize-1) && isOpen(row+1, col)) {
+                uf.union(siteNum(row, col), siteNum(row + 1, col));
+                tempUF.union(siteNum(row, col), siteNum(row + 1, col));
+            }
+            if(col != 0 && isOpen(row, col-1)) {
+                uf.union(siteNum(row, col), siteNum(row, col - 1));
+                tempUF.union(siteNum(row, col), siteNum(row, col - 1));
+            }
+            if(col != (gridSize-1) && isOpen(row, col+1)) {
+                uf.union(siteNum(row, col), siteNum(row, col + 1));
+                tempUF.union(siteNum(row, col), siteNum(row, col + 1));
+            }
+            if(row == 0) {
                 uf.union(siteNum(row, col), ufSize - 2);
-            if(row == (gridSize-1) && uf.connected(siteNum(row, col), ufSize - 1))
+                tempUF.union(siteNum(row, col), ufSize - 2);
+            }
+            if(row == (gridSize-1))
                 uf.union(siteNum(row, col), ufSize - 1);
 
         }
@@ -56,7 +68,7 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col){
         validateRowCol(row, col);
-        return uf.connected(siteNum(row, col), ufSize - 2);
+        return tempUF.connected(siteNum(row, col), ufSize - 2);
     }
     // number of open sites
     public int numberOfOpenSites(){
