@@ -5,10 +5,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Percolation {
-    private boolean[][] grid;
-    private WeightedQuickUnionUF uf;
-    private int gridSize;
-    private int ufSize;
+    private final boolean[][] grid;
+    private final WeightedQuickUnionUF uf;
+    private final int gridSize;
+    private final int ufSize;
     private int numOpenSites;
 
     // create N-by-N grid, with all sites initially blocked
@@ -43,7 +43,7 @@ public class Percolation {
                 uf.union(siteNum(row, col), siteNum(row, col+1));
             if(row == 0)
                 uf.union(siteNum(row, col), ufSize - 2);
-            if(row == (gridSize-1))
+            if(row == (gridSize-1) && uf.connected(siteNum(row, col), ufSize - 1))
                 uf.union(siteNum(row, col), ufSize - 1);
 
         }
@@ -73,7 +73,7 @@ public class Percolation {
     }
     private void validateRowCol(int row, int col){
         if(row < 0 || row >= gridSize || col < 0 || col >= gridSize)
-            throw new IllegalArgumentException();
+            throw new IndexOutOfBoundsException();
     }
 
     // use for unit testing (not required)
