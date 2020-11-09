@@ -9,10 +9,12 @@ public class PercolationStats {
 
     // perform T independent experiments on an N-by-N grid
     public PercolationStats(int N, int T, PercolationFactory pf){
+        if(N <= 0 || T <= 0)
+            throw new IllegalArgumentException();
         experiments = new double[T];
 
         for(int experiment = 0; experiment < T; experiment++){
-            experiments[experiment] = performExperiment(N);
+            experiments[experiment] = performExperiment(N, pf);
         }
     }
     // sample mean of percolation threshold
@@ -33,8 +35,8 @@ public class PercolationStats {
     }
 
     // Perform single experiment on NxN grid and return the threshold
-    private double performExperiment(int N){
-        Percolation p = new Percolation(N);
+    private double performExperiment(int N, PercolationFactory pf){
+        Percolation p = pf.make(N);
         int openSites = 0;
         double totalSites = N*N;
         while(!p.percolates()){
